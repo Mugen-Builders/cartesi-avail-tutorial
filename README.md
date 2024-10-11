@@ -130,6 +130,20 @@ cartesi build
 cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004/ -- /opt/cartesi/dapp/dapp
 ```
 
+3. **Golang**
+
+```bash
+cartesi create my-dapp --template go
+cd my-dapp
+cartesi build
+```
+
+- Run the Cartesi Machine Locally on bare metal using the command;
+
+```bash
+cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 -- /opt/cartesi/dapp/dapp
+```
+
 ## Interacting via the CLI
 
 - Send a dummy anvil execution that should be picked up by your dapp running in the Cartesi Machine.
