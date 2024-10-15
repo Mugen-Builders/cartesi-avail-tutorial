@@ -1,4 +1,5 @@
 **Developing with Cartesi and Avail: A Step-by-Step Guide**
+
 1. [Introduction](#introduction)
 2. [Prerequisites](#prerequisites)
 3. [Install Tools](#install-tools)
@@ -15,8 +16,9 @@
    - 5.3. [Python](#python-1)
    - 5.4. [Rust](#rust-1)
    - 5.5. [Golang](#golang-1)
-   
+
 **Interacting with Your dApp**
+
 1. [Interacting via the CLI](#interacting-via-the-cli)
 2. [Interacting via the Frontend Template](#interacting-via-the-frontend-template)
 3. [Interacting via the NPM Package](#interacting-via-the-npm-package)
@@ -36,7 +38,9 @@ This guide will walk you through setting up a Cartesi dApp using Avail on your l
 - Cartesi Machine: Backend logic engine for the dApp.
 
 ## Install Tools
+
 You can install nonodo in multiple ways. Either through an NPM Package or building from source
+
 ### 1. Nonodo
 
 - Install globally via npm using the command:
@@ -105,6 +109,8 @@ Or, if you're using zsh:
 
 This should display the available options for the Cartesi Machine, indicating that it’s correctly set up.
 
+**NOTE:** For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./Troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+
 ### 3. Cartesi CLI
 
 You can Install the Cartesi Cli using the command;
@@ -114,6 +120,7 @@ npm i -g @cartesi/cli
 ```
 
 ## Building and developing locally
+
 To test and develop your app locally it is higly recommended that you use `Brunodo` since it contains all the experiemental features from `Nonodo` such as simulating Avail inputs.
 
 With it you can skip a lot of the setup and send EIP-712 messages directly to the node using the nonce and submit endpoints that will be running on `localhost:8080/nonce` and `localhost:8080/submit`
@@ -265,8 +272,8 @@ curl --location 'http://localhost:8080/submit' \
 
 ## Interacting via the Frontend Template
 
-We have a demo example available which you can clone, and integrate into the dapp running on your local machine very easily. You can choose to modify this dApp to fit and match your ideal implementation and design. 
-It contains a ways to send many different types of input. Including interacting with your Cartesi dApp via avail, which utilises EIP-712 to sign typed data which is relayed on the users behalf to the avail testnet. 
+We have a demo example available which you can clone, and integrate into the dapp running on your local machine very easily. You can choose to modify this dApp to fit and match your ideal implementation and design.
+It contains a ways to send many different types of input. Including interacting with your Cartesi dApp via avail, which utilises EIP-712 to sign typed data which is relayed on the users behalf to the avail testnet.
 
 ### Installation
 
@@ -301,7 +308,7 @@ yarn dev --port 3000
 
 ## Interacting via the the NPM Package
 
-Interacting with your Cartesi dApp using the `@mugen-builders/client` npm package allows you to send data via EIP-712 or directly using signed inputs. This package simplifies the process of relaying data to Cartesi dApps, providing flexibility to work with both EIP-712 formatted data and standard inputs. 
+Interacting with your Cartesi dApp using the `@mugen-builders/client` npm package allows you to send data via EIP-712 or directly using signed inputs. This package simplifies the process of relaying data to Cartesi dApps, providing flexibility to work with both EIP-712 formatted data and standard inputs.
 You can check the description of the function in the package's [page](https://www.npmjs.com/package/@mugen-builders/client)
 
 ### Installation
@@ -320,48 +327,47 @@ To integrate the package into the front-end of your dApp, use the `advanceEIP712
 import { advanceInput, advanceEIP712 } from "@mugen-builders/client";
 
 const addInput = async (_input) => {
-    const provider = new ethers.providers.Web3Provider(wallet.provider);
-    const signer = provider.getSigner();
+  const provider = new ethers.providers.Web3Provider(wallet.provider);
+  const signer = provider.getSigner();
 
-    // For EIP-712 input
-    let availInput = await advanceEIP712(
-        signer, 
-        provider, 
-        dappAddress, 
-        _input, 
-        { cartesiNodeUrl: "http://localhost:8080" }
-    );
+  // For EIP-712 input
+  let availInput = await advanceEIP712(signer, provider, dappAddress, _input, {
+    cartesiNodeUrl: "http://localhost:8080",
+  });
 
-    // For simple input
-    let l1Input = await advanceInput(
-        signer, 
-        dappAddress, 
-        _input, 
-        { inputBoxAddress: "0x58Df21fE097d4bE5dCf61e01d9ea3f6B81c2E1dB" }
-    );
+  // For simple input
+  let l1Input = await advanceInput(signer, dappAddress, _input, {
+    inputBoxAddress: "0x58Df21fE097d4bE5dCf61e01d9ea3f6B81c2E1dB",
+  });
 };
 ```
-The return of `advanceEIP712` will be the same as `advanceInput`. Both methods will return lists with reports, notices and vouchers generated from that input, allowing you to interact with your dApp using the provided data. 
+
+The return of `advanceEIP712` will be the same as `advanceInput`. Both methods will return lists with reports, notices and vouchers generated from that input, allowing you to interact with your dApp using the provided data.
 
 This simplifies interaction with your dApp, providing an easy way to handle both types of inputs.
 
 ## Inspecting and reading outputs
 
 ### Inspecting state
+
 Inspecting the state of your dApp though `handle_inspect` function is done in the same way as using Cartesi Rollups standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/development/send-requests/#make-inspect-calls)
 
 ### Querying outputs
+
 Querying outputs directly is the exact same as using Cartesi Rollups standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/rollups-apis/graphql/overview/)
 
 To query outputs from a specific the process is very similar to using Cartesi Rollups Standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/rollups-apis/graphql/overview/) to read more.
 The big difference is the output format. Instead of querying inputs through the `index` field, you query them through an `id` field.
 
 This id field can come in two ways:
-- It is a hex value returned from `/submit` endpoint when the input comes from and EIP-712 signed message 
+
+- It is a hex value returned from `/submit` endpoint when the input comes from and EIP-712 signed message
 - It is string containing a scalar integer value that can be found inside the events emitted by the `inputBox` contract when sending the transaction through the layer 1.
 
 #### Example Queries
+
 ##### Listing inputs
+
 ```graphql
 query {
   inputs(first: 30) {
@@ -372,7 +378,7 @@ query {
         status
         blockTimestamp
         msgSender
-        payload     
+        payload
       }
     }
   }
@@ -380,31 +386,34 @@ query {
 ```
 
 ##### Getting a specific input through its `id`
+
 ```graphql
 query {
-  input(id: "0x67b8ca2e94df99f1c8b31f073c2e2aea1c6e86b979b9fe1178270a963b466cb6") {
+  input(
+    id: "0x67b8ca2e94df99f1c8b31f073c2e2aea1c6e86b979b9fe1178270a963b466cb6"
+  ) {
     id
     index
     status
     blockTimestamp
     msgSender
     payload
-    notices{
-      edges{
+    notices {
+      edges {
         node {
           payload
         }
       }
     }
-    reports{
-      edges{
+    reports {
+      edges {
         node {
           payload
         }
       }
     }
-    vouchers{
-      edges{
+    vouchers {
+      edges {
         node {
           payload
         }
