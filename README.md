@@ -188,6 +188,27 @@ brunodo
 cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 -- /opt/cartesi/dapp/dapp
 ```
 
+4. **Javascript**
+
+```bash
+cartesi create my-dapp --template javascript
+cd my-dapp
+cartesi build
+```
+
+- Start **brunodo** using the command;
+
+```bash
+brunodo
+```
+
+- Run the Cartesi Machine Locally on bare metal using the command;
+
+```bash
+cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:./path-to-app-folder/.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
+
+```
+
 ## Testing your node locally with a testnet
 
 For this you will need to build nonodo from source
@@ -251,6 +272,20 @@ cartesi build
 
 ```bash
 cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 -- /opt/cartesi/dapp/dapp
+```
+
+4. **Javascript**
+
+```bash
+cartesi create my-dapp --template javascript
+cd my-dapp
+cartesi build
+```
+
+- Run the Cartesi Machine Locally on bare metal using the command;
+
+```bash
+cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:./path-to-app-folder/.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
 ```
 
 # Interacting with your dApp
