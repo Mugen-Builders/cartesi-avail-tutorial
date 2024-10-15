@@ -15,6 +15,7 @@
    - 5.3. [Python](#python-1)
    - 5.4. [Rust](#rust-1)
    - 5.5. [Golang](#golang-1)
+   
 **Interacting with Your dApp**
 1. [Interacting via the CLI](#interacting-via-the-cli)
 2. [Interacting via the Frontend Template](#interacting-via-the-frontend-template)
