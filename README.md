@@ -1,3 +1,28 @@
+1. **Developing with Cartesi and Avail: A Step-by-Step Guide**
+   - 1. [Introduction](#introduction)
+   - 2. [Prerequisites](#prerequisites)
+   - 3. [Install Tools](#install-tools)
+       - 3.1. [Nonodo](#1-nonodo)
+       - 3.2. [Cartesi Machine](#2-cartesi-machine)
+       - 3.3. [Cartesi CLI](#3-cartesi-cli)
+   - 4. [Building and Developing Locally](#building-and-developing-locally)
+       - 4.1. [Using Brunodo](#using-brunodo)
+       - 4.2. [Python](#python)
+       - 4.3. [Rust](#rust)
+       - 4.4. [Golang](#golang)
+   - 5. [Testing Your Node Locally with a Testnet](#testing-your-node-locally-with-a-testnet)
+       - 5.1. [Build Nonodo from Source](#build-nonodo-from-source)
+       - 5.3. [Python](#python-1)
+       - 5.4. [Rust](#rust-1)
+       - 5.5. [Golang](#golang-1)
+2. **Interacting with Your dApp**
+   - 1. [Interacting via the CLI](#interacting-via-the-cli)
+   - 2. [Interacting via the Frontend Template](#interacting-via-the-frontend-template)
+   - 3. [Interacting via the NPM Package](#interacting-via-the-npm-package)
+   - 4. [Inspecting and Reading Outputs](#inspecting-and-reading-outputs)
+       - 4.1. [Inspecting State](#inspecting-state)
+       - 4.2. [Querying Outputs](#querying-outputs)
+
 # Developing with Cartesi and Avail: A Step-by-Step Guide
 
 ## Introduction
@@ -237,7 +262,7 @@ curl --location 'http://localhost:8080/submit' \
 }'
 ```
 
-## Interacting via the Frontend
+## Interacting via the Frontend Template
 
 We have a demo example available which you can clone, and integrate into the dapp running on your local machine very easily. You can choose to modify this dApp to fit and match your ideal implementation and design. 
 It contains a ways to send many different types of input. Including interacting with your Cartesi dApp via avail, which utilises EIP-712 to sign typed data which is relayed on the users behalf to the avail testnet. 
@@ -319,12 +344,12 @@ The return of `advanceEIP712` will be the same as `advanceInput`. Both methods w
 
 This simplifies interaction with your dApp, providing an easy way to handle both types of inputs.
 
-# Inspecting and reading outputs
+## Inspecting and reading outputs
 
-## Inspecting state
+### Inspecting state
 Inspecting the state of your dApp though `handle_inspect` function is done in the same way as using Cartesi Rollups standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/development/send-requests/#make-inspect-calls)
 
-## Querying outputs
+### Querying outputs
 Querying outputs directly is the exact same as using Cartesi Rollups standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/rollups-apis/graphql/overview/)
 
 To query outputs from a specific the process is very similar to using Cartesi Rollups Standalone. You can refer to the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/rollups-apis/graphql/overview/) to read more.
@@ -334,7 +359,8 @@ This id field can come in two ways:
 - It is a hex value returned from `/submit` endpoint when the input comes from and EIP-712 signed message 
 - It is string containing a scalar integer value that can be found inside the events emitted by the `inputBox` contract when sending the transaction through the layer 1.
 
-### Listing inputs
+#### Example Queries
+##### Listing inputs
 ```graphql
 query {
   inputs(first: 30) {
@@ -352,7 +378,7 @@ query {
 }
 ```
 
-### Getting a specific input through its `id`
+##### Getting a specific input through its `id`
 ```graphql
 query {
   input(id: "0x67b8ca2e94df99f1c8b31f073c2e2aea1c6e86b979b9fe1178270a963b466cb6") {
