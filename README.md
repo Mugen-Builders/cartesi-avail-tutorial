@@ -1,4 +1,4 @@
-1. **Developing with Cartesi and Avail: A Step-by-Step Guide**
+**Developing with Cartesi and Avail: A Step-by-Step Guide**
    - 1. [Introduction](#introduction)
    - 2. [Prerequisites](#prerequisites)
    - 3. [Install Tools](#install-tools)
@@ -15,7 +15,7 @@
        - 5.3. [Python](#python-1)
        - 5.4. [Rust](#rust-1)
        - 5.5. [Golang](#golang-1)
-2. **Interacting with Your dApp**
+**Interacting with Your dApp**
    - 1. [Interacting via the CLI](#interacting-via-the-cli)
    - 2. [Interacting via the Frontend Template](#interacting-via-the-frontend-template)
    - 3. [Interacting via the NPM Package](#interacting-via-the-npm-package)
