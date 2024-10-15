@@ -205,8 +205,7 @@ brunodo
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
-cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:./path-to-app-folder/.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
-
+cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
 ```
 
 ## Testing your node locally with a testnet
@@ -285,7 +284,7 @@ cartesi build
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
-cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:./path-to-app-folder/.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
+cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
 ```
 
 # Interacting with your dApp
