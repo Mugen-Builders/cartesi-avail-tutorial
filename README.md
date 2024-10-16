@@ -97,7 +97,8 @@ Or, if you're using zsh:
 
 This should display the available options for the Cartesi Machine, indicating that it’s correctly set up.
 
-**NOTE:** For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./Troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+> [!WARNING]
+> For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./Troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
 
 ### 3. Cartesi CLI
 
@@ -175,7 +176,8 @@ cartesi build
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
-cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
+cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 \
+--volume=.:/mnt --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --workdir=/opt/cartesi/dapp -- node index
 ```
 
 ## Testing your node locally with a testnet
@@ -245,7 +247,8 @@ cartesi build
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
-cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --flash-drive=label:root,filename:.cartesi/image.ext2  --volume=.:/mnt --workdir=mnt/my-dapp --ram-length=256Mi -- yarn start
+cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 \
+--volume=.:/mnt --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --workdir=/opt/cartesi/dapp -- node index
 ```
 
 # Interacting with your dApp
