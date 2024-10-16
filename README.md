@@ -189,7 +189,7 @@ cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --fl
 brunodo --avail-enabled -d
 ```
 
-- Create and build a new Cartesi dApp using the following command:
+- In another terminal, create and build a new Cartesi dApp using the following command:
 
 1. **Python**
 
