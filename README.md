@@ -180,7 +180,7 @@ cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --fl
 
 ## Testing your node locally with a testnet
 
-> [!NOTE]
+> [!WARNING]
 > This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet
 
 - Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
