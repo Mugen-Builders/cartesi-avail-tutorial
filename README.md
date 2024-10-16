@@ -43,22 +43,10 @@ You can install nonodo in multiple ways. Either through an NPM Package or buildi
 
 ### 1. Nonodo
 
-- Install globally via npm using the command:
-
-```bash
-npm i -g nonodo
-```
-
 - Install brunodo, the experimental version of nonodo through npm using the command:
 
 ```bash
 npm i -g brunodo
-```
-
-- Build from source: Clone the Nonodo repo by using the command:
-
-```bash
-git clone https://github.com/Calindra/nonodo
 ```
 
 ### 2. Cartesi Machine
@@ -125,7 +113,13 @@ To test and develop your app locally it is higly recommended that you use `Bruno
 
 With it you can skip a lot of the setup and send EIP-712 messages directly to the node using the nonce and submit endpoints that will be running on `localhost:8080/nonce` and `localhost:8080/submit`
 
-- Create and build a new Cartesi dApp using the following command:
+- Start **brunodo** using the command;
+
+```bash
+brunodo
+```
+
+- In another terminal, create and build a new Cartesi dApp using the following command:
 
 1. **Python**
 
@@ -133,12 +127,6 @@ With it you can skip a lot of the setup and send EIP-712 messages directly to th
 cartesi create my-dapp --template python
 cd my-dapp
 cartesi build
-```
-
-- Start **brunodo** using the command;
-
-```bash
-brunodo
 ```
 
 - Run the Cartesi Machine Locally on bare metal using the command;
@@ -156,12 +144,6 @@ cd my-dapp
 cartesi build
 ```
 
-- Start **brunodo** using the command;
-
-```bash
-brunodo
-```
-
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
@@ -174,12 +156,6 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 cartesi create my-dapp --template go
 cd my-dapp
 cartesi build
-```
-
-- Start **brunodo** using the command;
-
-```bash
-brunodo
 ```
 
 - Run the Cartesi Machine Locally on bare metal using the command;
@@ -196,12 +172,6 @@ cd my-dapp
 cartesi build
 ```
 
-- Start **brunodo** using the command;
-
-```bash
-brunodo
-```
-
 - Run the Cartesi Machine Locally on bare metal using the command;
 
 ```bash
@@ -210,22 +180,13 @@ cartesi-machine --network --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 --fl
 
 ## Testing your node locally with a testnet
 
-For this you will need to build nonodo from source
+> [!NOTE]
+> This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet
 
-- cd into the **_nonodo_** cloned repo, then update the content of the .env file with the following.
-
-```bash
-AVAIL_RPC_URL<Avail RPC Url>
-AVAIL_MNEMONIC=<Mnemonic for wallet>
-```
-
-The RPC can be any avail testnet supporting rpc, the default **_nonodo_** uses is:  
-` wss://turing-rpc.avail.so/ws`. Then the Mnemonics should be for a wallet that has sufficient Avail test tokens which **_nonodo_** will be using to relay your transactions to the avail network.
-
-- Start **_Nonodo_** using the command;
+- Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
 
 ```bash
-./nonodo --avail-enabled -d --sqlite-file db.sqlite3
+brunodo --avail-enabled -d
 ```
 
 - Create and build a new Cartesi dApp using the following command:
@@ -300,8 +261,8 @@ curl --location 'http://localhost:8080/submit' \
 --header 'Content-Type: application/json' \
 --data '{
     "signature": "0x373ca4d18d48e1fe3698971968e068e964effb1d36bab4b0204fa8aa1c7449f3517bb4b9b964554e6c81467399355580e0840b426a7855bd0c8e178368c584d61c",
-    "typedData": "eyJ0eXBlcyI6eyJDYXJ0ZXNpTWVzc2FnZSI6W3sibmFtZSI6ImFwcCIsInR5cGUiOiJhZGRyZXNzIn0seyJuYW1lIjoibm9uY2UiLCJ0eXBlIjoidWludDY0In0seyJuYW1lIjoibWF4X2dhc19wcmljZSIsInR5cGUiOiJ1aW50MTI4In0seyJuYW1lIjoiZGF0YSIsInR5cGUiOiJzdHJpbmcifV0sIkVJUDcxMkRvbWFpbiI6W3sibmFtZSI6Im5hbWUiLCJ0eXBlIjoic3RyaW5nIn0seyJuYW1lIjoidmVyc2lvbiIsInR5cGUiOiJzdHJpbmcifSx7Im5hbWUiOiJjaGFpbklkIiwidHlwZSI6InVpbnQyNTYifSx7Im5hbWUiOiJ2ZXJpZnlpbmdDb250cmFjdCIsInR5cGUiOiJhZGRyZXNzIn1dfSwicHJpbWFyeVR5cGUiOiJDYXJ0ZXNpTWVzc2FnZSIsImRvbWFpbiI6eyJuYW1lIjoiQXZhaWxNIiwidmVyc2lvbiI6IjEiLCJjaGFpbklkIjoiMHg3YTY5IiwidmVyaWZ5aW5nQ29udHJhY3QiOiIweENjQ0NjY2NjQ0NDQ2NDQ0NDQ0NjQ2NDY2NDY0NDQ2NDY2NjY2NjY0MiLCJzYWx0IjoiIn0sIm1lc3NhZ2UiOnsiYXBwIjoiMHhhYjc1MjhiYjg2MmZiNTdlOGEyYmNkNTY3YTJlOTI5YTBiZTU2YTVlIiwiZGF0YSI6IkdNIiwibWF4X2dhc19wcmljZSI6IjEwIiwibm9uY2UiOiIxIn19"
-}'
+    "typedData": {"types":{"CartesiMessage":[{"name":"app","type":"address"},{"name":"nonce","type":"uint64"},{"name":"max_gas_price","type":"uint128"},{"name":"data","type":"string"}],"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}]},"primaryType":"CartesiMessage","domain":{"name":"AvailM","version":"1","chainId":11155111,"verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC","salt":""},"message":{"app":"0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e","data":"GM","max_gas_price":"10","nonce":"0"}}
+  }'
 ```
 
 ## Interacting via the Frontend Template
@@ -424,7 +385,7 @@ query {
 ```graphql
 query {
   input(
-    id: "0x67b8ca2e94df99f1c8b31f073c2e2aea1c6e86b979b9fe1178270a963b466cb6"
+    id: "<input-id>"
   ) {
     id
     index
