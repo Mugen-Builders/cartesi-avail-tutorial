@@ -34,7 +34,7 @@ async function handle_advance(data) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ payload: str2hex("sentence is not on string format") }),
+      body: JSON.stringify({ payload: str2hex("sentence is not in string format") }),
     });
 
     return "reject"
