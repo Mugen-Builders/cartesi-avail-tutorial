@@ -188,7 +188,7 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 - Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
 
 ```bash
-brunodo --avail-enabled -d
+brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org
 ```
 
 - In another terminal, create and build a new Cartesi dApp using the following command:
