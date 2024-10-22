@@ -183,7 +183,7 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 ## Testing your node locally with a testnet
 
 > [!WARNING]
-> This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet
+> This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
 
 - Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
 
@@ -259,6 +259,9 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 
 - To send a dummy anvil execution that should be picked up by your dapp running in the Cartesi Machine you can run the following command:
 
+> [!WARNING]
+> For now this message is just for a simple tests when developing locally. Otherwise the nonce would have to be updated and the signature generated again. We recommend using this just as a "hello world" for the first trasaction after starting brunodo. Then use the next two approached to really test and build your dApp frontend.
+
 ```bash
 curl --location 'http://localhost:8080/submit' \
 --header 'Content-Type: application/json' \
@@ -303,6 +306,7 @@ yarn dev --port 3000
 
 - Finally open your browser and navigate to the URL where your frontend dapp is running, you can now interact with your dapp running on local by signing and sending data to your dapp via Avail.
 - To send data via avail use the “Send L2 EIP-712 Input” form in the Input section.
+- If you are running with the testnet remember to point to Sepolia
 
 ## Interacting via the the NPM Package
 
