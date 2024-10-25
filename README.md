@@ -271,7 +271,7 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
   mugen-cli send
   ```
 
-  > [!TIP]
+  > [!IMPORTANT]
   > Check out [this Video](https://drive.google.com/file/d/1kK6SP8rTw4O5l6lBOGPexNfiUYJrzr7E/view?usp=sharing) for a demo on using the cli
 
 ## Interacting via the Frontend Template
