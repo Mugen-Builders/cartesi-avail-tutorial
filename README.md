@@ -257,16 +257,22 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 
 - Sending transactions such as deposits or generic messages through the layer 1 is done in the same ways as Cartesi Rollups standalone. You can use `cast`, the `cartesi cli` or other approaches. You can follow them here in the [docs](https://docs.cartesi.io/cartesi-rollups/1.5/development/send-requests/)
 
-- To send a dummy anvil execution that should be picked up by your dapp running in the Cartesi Machine you can run the following command:
+- To send a dummy anvil execution that should go through avail and the piao sequencer before being picked up by your dapp running in the Cartesi Machine you can run the following command:
 
-```bash
-curl --location 'http://localhost:8080/submit' \
---header 'Content-Type: application/json' \
---data '{
-    "signature": "0x373ca4d18d48e1fe3698971968e068e964effb1d36bab4b0204fa8aa1c7449f3517bb4b9b964554e6c81467399355580e0840b426a7855bd0c8e178368c584d61c",
-    "typedData": {"types":{"CartesiMessage":[{"name":"app","type":"address"},{"name":"nonce","type":"uint64"},{"name":"max_gas_price","type":"uint128"},{"name":"data","type":"string"}],"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}]},"primaryType":"CartesiMessage","domain":{"name":"AvailM","version":"1","chainId":11155111,"verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC","salt":""},"message":{"app":"0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e","data":"GM","max_gas_price":"10","nonce":"0"}}
-  }'
-```
+  - Install The mugen-builders cli using npm:
+
+  ```bash
+  npm install -g @mugen-builders/cli
+  ```
+
+  - Run the below command to start the process of sending the transaction:
+
+  ```bash
+  mugen-cli send
+  ```
+
+  > [!TIP]
+  > Check out [this Video](https://drive.google.com/file/d/1kK6SP8rTw4O5l6lBOGPexNfiUYJrzr7E/view?usp=sharing) for a demo on using the cli
 
 ## Interacting via the Frontend Template
 
@@ -387,9 +393,7 @@ query {
 
 ```graphql
 query {
-  input(
-    id: "<input-id>"
-  ) {
+  input(id: "<input-id>") {
     id
     index
     status
