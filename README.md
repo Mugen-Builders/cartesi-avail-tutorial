@@ -185,10 +185,16 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 > [!WARNING]
 > This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
 
+- Register your dApp Address
+
+To run on the testnet environment you will need a dApp address on the network. For this we prepared a web page where you can resgister an address for your dApp
+https://address.mugen.builders
+In the above link you can connect with your wallet and using you public key generate a **dApp address** that will be used in the command that follows.
+
 - Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
 
 ```bash
-brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org
+brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org --contracts-application-address <dapp-address>
 ```
 
 - In another terminal, create and build a new Cartesi dApp using the following command:
