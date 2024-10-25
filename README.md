@@ -1,5 +1,5 @@
 
-# Avail Integration
+# One pager for Avail Integration
 
 **Developing with Cartesi and Avail: A Step-by-Step Guide**
 
