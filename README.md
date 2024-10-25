@@ -1,32 +1,7 @@
+
+# Avail Integration
+
 **Developing with Cartesi and Avail: A Step-by-Step Guide**
-
-1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Install Tools](#install-tools)
-   - 3.1. [Nonodo](#1-nonodo)
-   - 3.2. [Cartesi Machine](#2-cartesi-machine)
-   - 3.3. [Cartesi CLI](#3-cartesi-cli)
-4. [Building and Developing Locally](#building-and-developing-locally)
-   - 4.1. [Using Brunodo](#using-brunodo)
-   - 4.2. [Python](#python)
-   - 4.3. [Rust](#rust)
-   - 4.4. [Golang](#golang)
-5. [Testing Your Node Locally with a Testnet](#testing-your-node-locally-with-a-testnet)
-   - 5.1. [Build Nonodo from Source](#build-nonodo-from-source)
-   - 5.3. [Python](#python-1)
-   - 5.4. [Rust](#rust-1)
-   - 5.5. [Golang](#golang-1)
-
-**Interacting with Your dApp**
-
-1. [Interacting via the CLI](#interacting-via-the-cli)
-2. [Interacting via the Frontend Template](#interacting-via-the-frontend-template)
-3. [Interacting via the NPM Package](#interacting-via-the-npm-package)
-4. [Inspecting and Reading Outputs](#inspecting-and-reading-outputs)
-   - 4.1. [Inspecting State](#inspecting-state)
-   - 4.2. [Querying Outputs](#querying-outputs)
-
-# Developing with Cartesi and Avail: A Step-by-Step Guide
 
 ## Introduction
 
@@ -98,7 +73,7 @@ Or, if you're using zsh:
 This should display the available options for the Cartesi Machine, indicating that it’s correctly set up.
 
 > [!WARNING]
-> For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./Troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+> For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
 
 ### 3. Cartesi CLI
 
