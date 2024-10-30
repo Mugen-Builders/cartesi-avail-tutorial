@@ -18,8 +18,8 @@ var (
 	errlog  = log.New(os.Stderr, "[ error ] ", log.Lshortfile)
 )
 
-// Circle defines the structure for student data
-type Circle struct {
+// Student defines the structure for student data
+type Student struct {
 	Name           string
 	Age            int
 	WalletAddress  string
@@ -39,12 +39,12 @@ type CreateStudentPayload struct {
 	WalletAddress string `json:"wallet_address"`
 }
 
-func (c *Circle) TakeAttendance() {
+func (c *Student) TakeAttendance() {
 	c.AttendanceCount++
 	fmt.Printf("%s has taken attendance. Attendance count: %d\n", c.Name, c.AttendanceCount)
 }
 
-var allStudents []Circle
+var allStudents []Student
 var mu sync.Mutex
 
 func HandleAdvance(data *rollups.AdvanceResponse) error {
@@ -85,7 +85,7 @@ func HandleAdvance(data *rollups.AdvanceResponse) error {
 }
 
 func createStudent(payload CreateStudentPayload) {
-	newStudent := Circle{
+	newStudent := Student{
 		Name:          payload.Name,
 		Age:           payload.Age,
 		WalletAddress: payload.WalletAddress,
@@ -157,7 +157,7 @@ func HandleInspect(data *rollups.InspectResponse) error {
 		rollups.SendReport(&rollups.ReportRequest{Payload: rollups.Str2Hex(string(response))})
 	case "student":
 		walletAddress := routes[1]
-		var student *Circle
+		var student *Student
 
 		mu.Lock()
 		for _, s := range allStudents {

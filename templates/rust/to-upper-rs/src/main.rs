@@ -29,25 +29,27 @@ pub async fn emit_notice(
     _client: &hyper::Client<hyper::client::HttpConnector>,
 ) {
     // convert float to hex representation
-    let hex_value = format!("0x{}", hex::encode(payload.to_string()));
-    println!("hex_value is {:?}", hex_value);
+    println!("hellooooo");
 
-    let response = object! {
-        "payload" => format!("{}", hex_value)
-    };
+    // let hex_value = format!("0x{}", hex::encode(payload.to_string()));
+    // println!("hex_value is {:?}", hex_value);
 
-    // Send out a notice with the result
-    let request = hyper::Request::builder()
-        .method(hyper::Method::POST)
-        .header(hyper::header::CONTENT_TYPE, "application/json")
-        .uri(format!("{}/notice", &_server_addr))
-        .body(hyper::Body::from(response.dump()))
-        .expect("Error creating request");
-    let response = _client
-        .request(request)
-        .await
-        .expect("Error sending request");
-    println!("Notice sending status {}", response.status());
+    // let response = object! {
+    //     "payload" => format!("{}", hex_value)
+    // };
+
+    // // Send out a notice with the result
+    // let request = hyper::Request::builder()
+    //     .method(hyper::Method::POST)
+    //     .header(hyper::header::CONTENT_TYPE, "application/json")
+    //     .uri(format!("{}/notice", &_server_addr))
+    //     .body(hyper::Body::from(response.dump()))
+    //     .expect("Error creating request");
+    // let response = _client
+    //     .request(request)
+    //     .await
+    //     .expect("Error sending request");
+    // println!("Notice sending status {}", response.status());
 }
 
 pub async fn emit_report(
@@ -84,31 +86,31 @@ pub async fn handle_advance(
     request: JsonValue,
     storage: &mut Storage,
 ) -> Result<&'static str, Box<dyn std::error::Error>> {
-    println!("Received advance request data {}", &request);
-    let _payload = request["data"]["payload"]
-        .as_str()
-        .ok_or("Missing payload")?;
-    // TODO: add application logic here
+    println!("Received advance request data");
+    // let _payload = request["data"]["payload"]
+    //     .as_str()
+    //     .ok_or("Missing payload")?;
+    // // TODO: add application logic here
 
-    let sender = request["data"]["metadata"]["msg_sender"].as_str().ok_or("Missing sender")?;
-    let sentence = hex2str(_payload);
+    // let sender = request["data"]["metadata"]["msg_sender"].as_str().ok_or("Missing sender")?;
+    // let sentence = hex2str(_payload);
 
-    if is_numeric(&sentence) {
-        let message = String::from("Sentence is not in string format");
-        emit_report(&message, _server_addr, _client).await;
-        return Ok("reject");
+    // if is_numeric(&sentence) {
+    //     let message = String::from("Sentence is not in string format");
+    //     emit_report(&message, _server_addr, _client).await;
+    //     return Ok("reject");
 
-    } else {
-        let updated_sentence = sentence.to_uppercase();
-        storage.toUpperTotal += 1;
-        storage.userStruct.push(UserStructure {
-            sender: sender.to_string(),
-            request_input: sentence.to_string(),
-            request_output: updated_sentence.to_string(),
-        });
-        emit_notice(&updated_sentence, _server_addr, _client).await;
-        println!("Processed advance request. Total upper: {}", storage.toUpperTotal);
-    }
+    // } else {
+    //     let updated_sentence = sentence.to_uppercase();
+    //     storage.toUpperTotal += 1;
+    //     storage.userStruct.push(UserStructure {
+    //         sender: sender.to_string(),
+    //         request_input: sentence.to_string(),
+    //         request_output: updated_sentence.to_string(),
+    //     });
+    //     emit_notice(&updated_sentence, _server_addr, _client).await;
+    //     println!("Processed advance request. Total upper: {}", storage.toUpperTotal);
+    // }
 
     Ok("accept")
 }
@@ -172,7 +174,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .as_str()
                 .ok_or("request_type is not a string")?;
             status = match request_type {
-                "advance_state" => handle_advance(&client, &server_addr[..], req, &mut storage).await?,
+                "advance_state" => handle_advance(&client, &server_addr[..], req, &storage).await?,
                 "inspect_state" => handle_inspect(&client, &server_addr[..], req, &storage).await?,
                 &_ => {
                     eprintln!("Unknown request type");
