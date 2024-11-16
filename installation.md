@@ -13,7 +13,7 @@ You can install nonodo in multiple ways. Either through an NPM Package or buildi
 - Install brunodo, the experimental version of nonodo through npm using the command:
 
 ```bash
-npm install -g brunodo@2.14.1-beta
+npm install -g brunodo
 ```
 
 ### 2. Cartesi Machine

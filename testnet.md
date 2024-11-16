@@ -14,7 +14,7 @@ In the above link you can connect with your wallet and using you public key gene
 - Start **_brunodo_** using the command with the flag with the flag that enables integration with Avail;
 
 ```bash
-brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org --contracts-application-address <dapp-address>
+brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org --epoch-blocks 0 --contracts-application-address <dapp-address>
 ```
 
 ## Running the Machine
