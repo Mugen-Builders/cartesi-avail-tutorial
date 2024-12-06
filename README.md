@@ -72,8 +72,11 @@ Or, if you're using zsh:
 
 This should display the available options for the Cartesi Machine, indicating that it’s correctly set up.
 
-> [!WARNING]
-> For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+:::warning
+
+For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./troubleshooting.md#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+
+:::
 
 ### 3. Cartesi CLI
 
@@ -157,8 +160,11 @@ cartesi-machine --network --flash-drive=label:root,filename:.cartesi/image.ext2 
 
 ## Testing your node locally with a testnet
 
-> [!WARNING]
-> This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
+:::warning
+
+This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
+
+:::
 
 - Register your dApp Address
 

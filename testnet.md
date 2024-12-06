@@ -2,8 +2,11 @@
 
 ## Testing your node locally with a testnet
 
-> [!WARNING]
-> This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
+:::warning
+
+This version of the integration with Avail supports only Sepolia (chainId: 11155111) as the testnet.
+
+:::
 
 - Register your dApp Address
 

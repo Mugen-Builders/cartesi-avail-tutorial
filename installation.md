@@ -64,8 +64,11 @@ Or, if you're using zsh:
 
 This should display the available options for the Cartesi Machine, indicating that it’s correctly set up.
 
-> [!WARNING]
-> For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./troubleshooting#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+:::warning
+
+For Mac users, running this command might trigger a prompt from Mac built in security feauture. Check this part of the [troubleshooting section](./troubleshooting#1-cartesi-machine-blocked-by-mac-security-feautures) for more guidelines on how to resolve this.
+
+:::
 
 ### 3. Cartesi CLI
 
